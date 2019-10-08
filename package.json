@@ -14,5 +14,14 @@
     "svelte-input"
   ],
   "author": "Nik Mostovoy (nik.mostovoy@gmail.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "svelte": "3.x"
+  },
+  "dependencies": {
+    "input-core": "^1.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
 }
