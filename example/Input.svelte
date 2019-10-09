@@ -1,34 +1,61 @@
 <script>
-  import { createEventDispatcher, tick } from "svelte";
-  import { createInput, defaults } from "input-core";
+  import { createEventDispatcher, tick } from 'svelte';
+  import { createInput, defaults } from 'input-core';
 
-  export let value;
-  export let defaultValue;
-  export let reformat;
-  export let maskString;
+  export let value = undefined;
+  export let defaultValue = undefined;
+  export let reformat = undefined;
+  export let maskString = undefined;
   export let maskChar = defaults.maskChar;
   export let mask = defaults.mask;
   export let maskFormat = defaults.maskFormat;
-  export let alwaysShowMask;
-  export let showMask;
+  export let alwaysShowMask = false;
+  export let showMask = false;
 
   const KEYBOARD = {
     BACKSPACE: 8,
-    DELETE: 46
+    DELETE: 46,
   };
+  const dispatch = createEventDispatcher();
 
-  let shouldShowMask = alwaysShowMask || showMask;
-
-  let input = createInput({
-    value: value || defaultValue || "",
+  const input = createInput({
+    value: value || defaultValue || '',
     reformat,
     maskString,
     maskChar,
     mask,
-    maskFormat
+    maskFormat,
   });
 
-  const dispatch = createEventDispatcher();
+  let shouldShowMask = alwaysShowMask || showMask;
+  $: {
+    shouldShowMask = alwaysShowMask || showMask;
+    showValue();
+  }
+  $: {
+    input.setReformat(reformat);
+    showValue();
+  }
+  $: {
+    input.setMaskFormat(maskFormat);
+    showValue();
+  }
+  $: {
+    input.setMask(mask);
+    showValue();
+  }
+  $: {
+    input.setMaskString(maskString);
+    showValue();
+  }
+  $: {
+    input.setMaskChar(maskChar);
+    showValue();
+  }
+  $: {
+    value !== undefined && input.setValue(value);
+    showValue();
+  }
 
   const {
     value: _value,
@@ -43,7 +70,7 @@
     ...other
   } = $$props;
 
-  let inputValue = value || defaultValue || "";
+  let inputValue = value || defaultValue || '';
   let inputEl;
   let canSetSelection = false;
 
@@ -80,7 +107,7 @@
   function getSelection() {
     input.setSelection({
       start: inputEl.selectionStart,
-      end: inputEl.selectionEnd
+      end: inputEl.selectionEnd,
     });
   }
 
@@ -101,7 +128,8 @@
 
       setTimeout(setSelection, 0);
     }
-    dispatch("change", e);
+
+    dispatchChangeEvent(e);
   }
 
   function handlePaste(e) {
@@ -109,18 +137,18 @@
     getSelection();
 
     // getData value needed for IE also works in FF & Chrome
-    input.paste(e.clipboardData.getData("Text"));
+    input.paste(e.clipboardData.getData('Text'));
 
     showValue();
 
     // Timeout needed for IE
     setTimeout(setSelection, 0);
 
-    dispatch("change", e);
+    dispatchChangeEvent(e);
   }
 
   function handleKeyPress(e) {
-    if (e.metaKey || e.altKey || e.ctrlKey || e.key === "Enter") {
+    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') {
       return;
     }
 
@@ -129,7 +157,8 @@
     input.input(e.key || e.data || String.fromCharCode(e.which));
     showValue();
     setSelection();
-    dispatch("change", e);
+
+    dispatchChangeEvent(e);
   }
 
   function handleKeyDown(e) {
@@ -141,7 +170,7 @@
       showValue();
       setSelection();
 
-      dispatch("change", e);
+      dispatchChangeEvent(e);
     }
 
     if (e.which === KEYBOARD.DELETE) {
@@ -152,18 +181,23 @@
       showValue();
       setSelection();
 
-      dispatch("change", e);
+      dispatchChangeEvent(e);
     }
   }
 
   function handleFocus(e) {
     canSetSelection = true;
-    dispatch("focus", e);
+    dispatch('focus', e);
   }
 
   function handleBlur(e) {
     canSetSelection = false;
-    dispatch("blur", e);
+    dispatch('blur', e);
+  }
+
+  function dispatchChangeEvent(e) {
+    const { maskedValue, visibleValue } = input.getState();
+    dispatch('change', { originalEvent: e, inputState: { maskedValue, visibleValue } });
   }
 
   //   function keyPressPropName() {
@@ -177,6 +211,8 @@
   //   }
 
   showValue();
+
+  console.log(other);
 </script>
 
 <input
