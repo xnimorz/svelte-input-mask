@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, tick } from 'svelte';
+  import { createEventDispatcher, tick, onMount, onDestroy } from 'svelte';
   import { createInput, defaults } from 'input-core';
 
   export let value = undefined;
@@ -28,34 +28,21 @@
   });
 
   let shouldShowMask = alwaysShowMask || showMask;
-  $: {
-    shouldShowMask = alwaysShowMask || showMask;
-    showValue();
-  }
-  $: {
-    input.setReformat(reformat);
-    showValue();
-  }
-  $: {
-    input.setMaskFormat(maskFormat);
-    showValue();
-  }
-  $: {
-    input.setMask(mask);
-    showValue();
-  }
-  $: {
-    input.setMaskString(maskString);
-    showValue();
-  }
-  $: {
-    input.setMaskChar(maskChar);
-    showValue();
-  }
-  $: {
-    value !== undefined && input.setValue(value);
-    showValue();
-  }
+  $: shouldShowMask = alwaysShowMask || showMask;
+  $: input.setReformat(reformat);
+  $: input.setMaskFormat(maskFormat);
+  $: input.setMask(mask);
+  $: input.setMaskString(maskString);
+  $: input.setMaskChar(maskChar);
+  $: value !== undefined && input.setValue(value);
+
+  onMount(() => {
+    input.subscribe(applyValue);
+  });
+
+  onDestroy(() => {
+    input.unsubscribe(applyValue);
+  });
 
   const {
     value: _value,
@@ -70,41 +57,41 @@
     ...other
   } = $$props;
 
-  let inputValue = value || defaultValue || '';
-  let inputEl;
   let canSetSelection = false;
+  let inputValue = setupInputValue(input.getState());
 
-  function applyValue(value) {
-    input.setValue(value);
-    showValue();
-  }
+  let inputEl;
 
-  function showValue() {
+  function setupInputValue({ maskedValue, visibleValue }) {
     if (shouldShowMask && (canSetSelection || alwaysShowMask)) {
-      inputValue = input.getMaskedValue();
-      return;
+      return maskedValue;
     }
-    inputValue = input.getVisibleValue();
+    return visibleValue;
   }
 
-  async function setSelection() {
+  function applyValue({ maskedValue, visibleValue, selection }) {
+    inputValue = setupInputValue({ maskedValue, visibleValue });
+    setSelection(selection);
+    dispatchChangeEvent({ maskedValue, visibleValue });
+  }
+
+  async function setSelection({ start, end }) {
     if (!canSetSelection) {
       return;
     }
-    const selection = input.getSelection();
 
     await tick();
-    inputEl.setSelectionRange(selection.start, selection.end);
+    inputEl.setSelectionRange(start, end);
     const raf =
       window.requestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       (fn => setTimeout(fn, 0));
     // For android
-    raf(() => inputEl.setSelectionRange(selection.start, selection.end));
+    raf(() => inputEl.setSelectionRange(start, end));
   }
 
-  function getSelection() {
+  function setupSelection() {
     input.setSelection({
       start: inputEl.selectionStart,
       end: inputEl.selectionEnd,
@@ -121,30 +108,22 @@
 
     // fix conflict by update value in mask model
     if (e.target.value !== currentValue) {
-      getSelection();
+      setupSelection();
       input.setValue(e.target.value);
-
-      showValue();
-
-      setTimeout(setSelection, 0);
-    }
-
-    dispatchChangeEvent(e);
+      setSelection(input.getSelection());
+      setTimeout(() => setSelection(input.getSelection()), 0);
+    }    
   }
 
   function handlePaste(e) {
     e.preventDefault();
-    getSelection();
+    setupSelection();
 
     // getData value needed for IE also works in FF & Chrome
     input.paste(e.clipboardData.getData('Text'));
-
-    showValue();
-
+    setSelection(input.getSelection());
     // Timeout needed for IE
-    setTimeout(setSelection, 0);
-
-    dispatchChangeEvent(e);
+    setTimeout(() => setSelection(input.getSelection()), 0);    
   }
 
   function handleKeyPress(e) {
@@ -153,35 +132,24 @@
     }
 
     e.preventDefault();
-    getSelection();
+    setupSelection();
     input.input(e.key || e.data || String.fromCharCode(e.which));
-    showValue();
-    setSelection();
-
-    dispatchChangeEvent(e);
+    setSelection(input.getSelection());  
   }
 
   function handleKeyDown(e) {
     if (e.which === KEYBOARD.BACKSPACE) {
       e.preventDefault();
-      getSelection();
+      setupSelection();
       input.removePreviosOrSelected();
-
-      showValue();
-      setSelection();
-
-      dispatchChangeEvent(e);
+      setSelection(input.getSelection());      
     }
 
     if (e.which === KEYBOARD.DELETE) {
       e.preventDefault();
-      getSelection();
+      setupSelection();
       input.removeNextOrSelected();
-
-      showValue();
-      setSelection();
-
-      dispatchChangeEvent(e);
+      setSelection(input.getSelection());
     }
   }
 
@@ -195,24 +163,9 @@
     dispatch('blur', e);
   }
 
-  function dispatchChangeEvent(e) {
-    const { maskedValue, visibleValue } = input.getState();
-    dispatch('change', { originalEvent: e, inputState: { maskedValue, visibleValue } });
+  function dispatchChangeEvent({ maskedValue, visibleValue }) {
+    dispatch('change', { element: inputEl, inputState: { maskedValue, visibleValue } });
   }
-
-  //   function keyPressPropName() {
-  //     if (
-  //       typeof navigator !== "undefined" &&
-  //       navigator.userAgent.match(/Android/i)
-  //     ) {
-  //       return "beforeinput";
-  //     }
-  //     return "keypress";
-  //   }
-
-  showValue();
-
-  console.log(other);
 </script>
 
 <input

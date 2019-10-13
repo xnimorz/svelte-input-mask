@@ -1,17 +1,18 @@
 {
-  "name": "svelte-mask-input",
-  "version": "1.0.0",
-  "description": "svelte mask input",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name": "svelte-input-mask",
+  "version": "0.0.1",
+  "description": "Input masking component for Svelte",
+  "main": "./src",
+  "files": [
+    "src"
+  ],
   "keywords": [
     "svelte",
     "input",
     "mask",
-    "svelte-mask-input",
-    "svelte-input"
+    "svelte-input-mask",
+    "svelte-input",
+    "svelte-input-mask"
   ],
   "author": "Nik Mostovoy (nik.mostovoy@gmail.com)",
   "license": "MIT",
@@ -19,7 +20,7 @@
     "svelte": "3.x"
   },
   "dependencies": {
-    "input-core": "^1.0.0"
+    "input-core": "2.0.1"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

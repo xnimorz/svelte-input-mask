@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-input-core@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/input-core/-/input-core-1.0.0.tgz#e8c02f92fbac4033058fcaa1b779bef3a8fbae70"
-  integrity sha1-6MAvkvusQDMFj8qht3m+86j7rnA=
+input-core@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/input-core/-/input-core-2.0.1.tgz#4aa350f4f2b65d34dd6e94745ff9ab6bf0963ef3"
+  integrity sha512-KHx7rZraeQItqJaWThYx6BN/ScfbgtOyeKz48Dl8uM68LfaNtJb7jxhyoh6HYDhvbmrpcN5UE1IiYp0q1xOHuQ==
 
 prettier@^1.18.2:
   version "1.18.2"

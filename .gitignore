@@ -3,3 +3,4 @@ package-lock.json
 example/public/*
 .vscode
 .idea
+!example/public/index.html

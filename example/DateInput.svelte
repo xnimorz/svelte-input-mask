@@ -1,5 +1,5 @@
 <script>
-  import Input from './Input.svelte';
+  import MaskInput from './MaskInput.svelte';
 
   let maskString = 'DD.MM.YYYY';
   let mask = '00.00.0000';
@@ -16,4 +16,4 @@
   };
 </script>
 
-<Input alwaysShowMask {maskString} {mask} on:change={handleChange} {...$$props} />
+<MaskInput alwaysShowMask {maskString} {mask} on:change={handleChange} {...$$props} />

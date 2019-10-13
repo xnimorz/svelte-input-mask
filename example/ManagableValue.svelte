@@ -1,5 +1,5 @@
 <script>
-  import Input from './Input.svelte';
+  import MaskInput from './MaskInput.svelte';
 
   let value = '1234';
   const handleChange = e => {
@@ -8,4 +8,4 @@
 </script>
 
 <p>Value is: {value}</p>
-<Input on:change={handleChange} mask={'0000-0000'} {value} />
+<MaskInput {...$$props} on:change={handleChange} mask={'0000-0000'} {value} />
