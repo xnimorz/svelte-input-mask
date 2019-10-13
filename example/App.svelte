@@ -1,10 +1,9 @@
 <script>
-  import MaskInput from 'svelte-input-mask/src/MaskInput.svelte';
-  import NumberInput from 'svelte-input-mask/src/NumberInput.svelte';
-
+  import MaskInput from 'svelte-input-mask';
   import CreditCard from './CreditCard.svelte';
   import ManagableValue from './ManagableValue.svelte';
   import DateInput from './DateInput.svelte';
+  import NumberInput from 'svelte-input-mask/NumberInput.svelte';
 </script>
 
 <style>
@@ -63,7 +62,7 @@
 <main>
   <h1>Svelte mask input</h1>
   <p>
-    <a target="_blank" href="https://github.com/xnimorz/svelte-input-mask">Svelte mask input on GitHub</a>
+    <a target="_blank" href="https://github.com/xnimorz/svelte-mask-input">Svelte mask input on GitHub</a>
   </p>
   If you need to create an input for:
   <ul>
