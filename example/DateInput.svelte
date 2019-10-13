@@ -1,5 +1,5 @@
 <script>
-  import MaskInput from './MaskInput.svelte';
+  import MaskInput from 'svelte-input-mask/src/MaskInput.svelte';
 
   let maskString = 'DD.MM.YYYY';
   let mask = '00.00.0000';

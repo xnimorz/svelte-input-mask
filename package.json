@@ -2,17 +2,26 @@
   "name": "svelte-input-mask",
   "version": "0.0.1",
   "description": "Input masking component for Svelte",
-  "main": "./src",
+  "main": "./MaskInput.svelte",
   "files": [
-    "src"
+    "MaskInput.svelte",
+    "NumberInput.svelte"
   ],
   "keywords": [
     "svelte",
     "input",
     "mask",
-    "svelte-input-mask",
+    "svelte-component",
+    "svelte-mask-input",
+    "svelte-text-mask",
     "svelte-input",
-    "svelte-input-mask"
+    "svelte-input-mask",
+    "credit-card",
+    "date-input",
+    "number-input",
+    "date-format",
+    "custom-mask",
+    "input-formatting"
   ],
   "author": "Nik Mostovoy (nik.mostovoy@gmail.com)",
   "license": "MIT",

@@ -10,6 +10,7 @@ const production = !process.env.ROLLUP_WATCH;
 
 export default {
   input: 'index.js',
+  external: ['svelte-input-mask', 'svelte-input-mask/src/MaskInput.svelte', 'svelte-input-mask/src/NumberInput.svelte'],
   output: {
     sourcemap: true,
     format: 'iife',
@@ -17,6 +18,8 @@ export default {
     file: 'public/bundle.js',
     globals: {
       'input-core': 'inputCore',
+      'svelte-input-mask/src/MaskInput.svelte': 'MaskInput',
+      'svelte-input-mask/src/NumberInput.svelte': 'NumberInput',
     },
   },
   plugins: [

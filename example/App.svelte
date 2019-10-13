@@ -1,9 +1,10 @@
 <script>
-  import MaskInput from './MaskInput.svelte';
+  import MaskInput from 'svelte-input-mask/src/MaskInput.svelte';
+  import NumberInput from 'svelte-input-mask/src/NumberInput.svelte';
+
   import CreditCard from './CreditCard.svelte';
   import ManagableValue from './ManagableValue.svelte';
   import DateInput from './DateInput.svelte';
-  import NumberInput from './NumberInput.svelte';
 </script>
 
 <style>
