@@ -633,10 +633,10 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-input-mask@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/svelte-input-mask/-/svelte-input-mask-0.0.1.tgz#7234266e14bf6b78bbccecbf070acf438a2258b6"
-  integrity sha512-BpwNPAhhkXZUUqiahTpIh29Bx2Y+psBSxNW3on2lnYIK27rjv7s8oZ9WW+CwCYEopdUxe1mjsHbyS78j+ofymw==
+svelte-input-mask@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/svelte-input-mask/-/svelte-input-mask-0.0.2.tgz#d11edbe806dcb2316a7aeb426f6594089e8a70c5"
+  integrity sha512-SQKWdHPBoygD/x+E/4W+sfhHOkIb59sWNOMxtMs29H/HRioJ0RsXIV7wutnt7BSs0NR5V1C3FcS8cF1oJAYUVg==
   dependencies:
     input-core "2.0.1"
 
