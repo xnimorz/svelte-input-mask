@@ -98,21 +98,24 @@
     });
   }
 
-  function handleInput(e) {
-    let currentValue;
+  function getValue() {
     if (showMask && (canSetSelection || alwaysShowMask)) {
-      currentValue = input.getMaskedValue();
+      return input.getState().maskedValue;
     } else {
-      currentValue = input.getVisibleValue();
+      return input.getState().visibleValue;
     }
+  }
+
+  function handleInput(e) {
+    const prevValue = getValue();
 
     // fix conflict by update value in mask model
-    if (e.target.value !== currentValue) {
-      setupSelection();
-      input.setValue(e.target.value);
+    if (e.target.value !== prevValue) {
+      input.input(e.data);
       setSelection(input.getSelection());
+      // Timeout needed for IE
       setTimeout(() => setSelection(input.getSelection()), 0);
-    }    
+    }
   }
 
   function handlePaste(e) {
@@ -123,7 +126,7 @@
     input.paste(e.clipboardData.getData('Text'));
     setSelection(input.getSelection());
     // Timeout needed for IE
-    setTimeout(() => setSelection(input.getSelection()), 0);    
+    setTimeout(() => setSelection(input.getSelection()), 0);
   }
 
   function handleKeyPress(e) {
@@ -134,7 +137,7 @@
     e.preventDefault();
     setupSelection();
     input.input(e.key || e.data || String.fromCharCode(e.which));
-    setSelection(input.getSelection());  
+    setSelection(input.getSelection());
   }
 
   function handleKeyDown(e) {
@@ -142,7 +145,7 @@
       e.preventDefault();
       setupSelection();
       input.removePreviosOrSelected();
-      setSelection(input.getSelection());      
+      setSelection(input.getSelection());
     }
 
     if (e.which === KEYBOARD.DELETE) {
@@ -164,7 +167,10 @@
   }
 
   function dispatchChangeEvent({ maskedValue, visibleValue }) {
-    dispatch('change', { element: inputEl, inputState: { maskedValue, visibleValue } });
+    dispatch('change', {
+      element: inputEl,
+      inputState: { maskedValue, visibleValue },
+    });
   }
 </script>
 
