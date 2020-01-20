@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "svelte": "^3.12.1",
-    "svelte-input-mask": "0.0.2"
+    "svelte-input-mask": "0.0.3"
   }
 }
