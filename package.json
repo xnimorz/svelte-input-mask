@@ -1,6 +1,6 @@
 {
   "name": "svelte-input-mask",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Input masking component for Svelte",
   "main": "./MaskInput.svelte",
   "scripts": {

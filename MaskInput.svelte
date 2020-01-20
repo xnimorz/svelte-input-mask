@@ -69,10 +69,17 @@
     return visibleValue;
   }
 
-  function applyValue({ maskedValue, visibleValue, selection }) {
+  function applyValue({ maskedValue, visibleValue, selection, value }) {
     inputValue = setupInputValue({ maskedValue, visibleValue });
     setSelection(selection);
-    dispatchChangeEvent({ maskedValue, visibleValue });
+    dispatchChangeEvent({
+      unmasked: value
+        .filter(item => item.type === 1)
+        .map(item => item.char)
+        .join(''),
+      maskedValue,
+      visibleValue,
+    });
   }
 
   async function setSelection({ start, end }) {
@@ -166,10 +173,10 @@
     dispatch('blur', e);
   }
 
-  function dispatchChangeEvent({ maskedValue, visibleValue }) {
+  function dispatchChangeEvent({ unmasked, maskedValue, visibleValue }) {
     dispatch('change', {
       element: inputEl,
-      inputState: { maskedValue, visibleValue },
+      inputState: { unmaskedValue: unmasked, maskedValue, visibleValue },
     });
   }
 </script>
