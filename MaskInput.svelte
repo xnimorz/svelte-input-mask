@@ -44,19 +44,6 @@
     input.unsubscribe(applyValue);
   });
 
-  const {
-    value: _value,
-    defaultValue: _defaultValue,
-    reformat: _reformat,
-    maskString: _maskString,
-    maskChar: _maskChar,
-    mask: _mask,
-    maskFormat: _maskFormat,
-    alwaysShowMask: _alwaysShowMask,
-    showMask: _showMask,
-    ...other
-  } = $$props;
-
   let canSetSelection = false;
   let inputValue = setupInputValue(input.getState());
 
@@ -182,7 +169,7 @@
 </script>
 
 <input
-  {...other}
+  {...$$restProps}
   value={inputValue}
   on:input={handleInput}
   on:keydown={handleKeyDown}

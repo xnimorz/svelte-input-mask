@@ -633,17 +633,17 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-input-mask@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/svelte-input-mask/-/svelte-input-mask-0.0.3.tgz#3ba0b6d78ed8f9b67e242eb9713d352348e95d90"
-  integrity sha512-dsSq36JVrWj/y0Ga023V6XmNsBb2rgyoNj4SDUvh2HxrMcazd1yeud1mIsH6PdbuvhVH6KJJATf9EhSYFVJGwA==
+svelte-input-mask@0.0.4-beta:
+  version "0.0.4-beta"
+  resolved "https://registry.yarnpkg.com/svelte-input-mask/-/svelte-input-mask-0.0.4-beta.tgz#9a39d5be67a76fc32545895dca3ea879eb5caed0"
+  integrity sha512-mfhB0KNZvReqNM3Cz0p10Dnj0dX/8q1L63JUp51Q4ISJnh7tdBEZvP+pDnrCvmG1OcXit0Ejz4H9cYY/BZhbrA==
   dependencies:
     input-core "2.0.1"
 
-svelte@^3.12.1:
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.12.1.tgz#ddfacd43272ac3255907c682b74ee7d3d8b06b0c"
-  integrity sha512-t29WJNjHIqfrdMcVXqIyRfgLEaNz7MihKXTpb8qHlbzvf0WyOOIhIlwIGvl6ahJ9+9CLJwz0sjhFNAmPgo8BHg==
+svelte@^3.23.2:
+  version "3.23.2"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.23.2.tgz#f3e500384261a2e77b29681ee744c3c790fbcdc3"
+  integrity sha512-hE8GeTM83YVR4GY6/6PeDEcGct4JS5aCi+IYbCAa76oaPSfuF7L85DQYULQxlTK/KPWzw3L1GRGmC3oPG/PQoA==
 
 terser@^4.1.0:
   version "4.3.8"

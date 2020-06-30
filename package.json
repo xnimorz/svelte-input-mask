@@ -1,6 +1,6 @@
 {
   "name": "svelte-input-mask",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Input masking component for Svelte",
   "main": "./MaskInput.svelte",
   "scripts": {
@@ -39,7 +39,7 @@
   "author": "Nik Mostovoy (nik.mostovoy@gmail.com)",
   "license": "MIT",
   "peerDependencies": {
-    "svelte": "3.x"
+    "svelte": ">=3.20.0"
   },
   "dependencies": {
     "input-core": "2.0.1"
