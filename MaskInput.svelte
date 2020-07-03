@@ -60,10 +60,12 @@
     inputValue = setupInputValue({ maskedValue, visibleValue });
     setSelection(selection);
     dispatchChangeEvent({
-      unmasked: value
-        .filter(item => item.type === 1)
-        .map(item => item.char)
-        .join(''),
+      unmasked: reformat
+        ? value
+        : value
+            .filter(item => item.type === 1)
+            .map(item => item.char)
+            .join(''),
       maskedValue,
       visibleValue,
     });
