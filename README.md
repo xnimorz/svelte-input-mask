@@ -146,3 +146,7 @@ cd svelte-input-mask/example
 yarn install
 yarn dev
 ```
+
+### Requirements:
+
+Svelte should be installed in your project. Check the minimal Svelte version here: https://github.com/xnimorz/svelte-input-mask/blob/master/package.json#L42
