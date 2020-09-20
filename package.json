@@ -3,9 +3,6 @@
   "version": "1.0.1",
   "description": "Input masking component for Svelte",
   "main": "./MaskInput.svelte",
-  "scripts": {
-    "size": "size-limit"
-  },
   "files": [
     "MaskInput.svelte",
     "NumberInput.svelte"
@@ -26,16 +23,6 @@
     "custom-mask",
     "input-formatting"
   ],
-  "size-limit": [
-    {
-      "limit": "1Kb",
-      "path": "./MaskInput.svelte"
-    },
-    {
-      "limit": "1Kb",
-      "path": "./NumberInput.svelte"
-    }
-  ],
   "author": "Nik Mostovoy (nik.mostovoy@gmail.com)",
   "license": "MIT",
   "peerDependencies": {
@@ -45,8 +32,6 @@
     "input-core": "2.0.1"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^2.1.6",
-    "prettier": "^1.18.2",
-    "size-limit": "^2.1.6"
+    "prettier": "^1.18.2"
   }
 }
