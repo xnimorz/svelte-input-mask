@@ -2,7 +2,7 @@
   import { createEventDispatcher, tick, onMount, onDestroy } from 'svelte';
   import { createInput, defaults } from 'input-core';
 
-  export let value = undefined;
+  export let value = '';
   export let defaultValue = undefined;
   export let reformat = undefined;
   export let maskString = undefined;
