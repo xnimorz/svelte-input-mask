@@ -22,7 +22,7 @@
     "sirv-cli": "^0.4.4"
   },
   "dependencies": {
-    "svelte": "^3.23.2",
+    "svelte": "^3.49.0",
     "svelte-input-mask": "0.0.4-beta"
   },
   "resolutions": {
