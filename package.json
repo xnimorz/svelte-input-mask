@@ -25,6 +25,14 @@
   ],
   "author": "Nik Mostovoy (nik.mostovoy@gmail.com)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xnimorz/svelte-input-mask.git"
+  },
+  "homepage": "https://github.com/xnimorz/svelte-input-mask#readme",
+  "bugs": {
+    "url": "https://github.com/xnimorz/svelte-input-mask/issues"
+  },
   "peerDependencies": {
     "svelte": ">=3.20.0"
   },
